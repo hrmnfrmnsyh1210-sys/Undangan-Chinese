@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Calendar, Clock, Copy, Check, Gift, MailOpen, Music, VolumeX, BookHeart, Image as ImageIcon } from 'lucide-react';
 
@@ -16,7 +16,14 @@ const DATA = {
     parents: "Anak kedua dr bapak lim mou tie dan ibu yo hui khiam",
     image: "https://images.unsplash.com/photo-1627063231435-08e1a7e2b67f?q=80&w=600&auto=format&fit=crop"
   },
-  akad: { // Or Pemberkatan 
+  tunangan: {
+    date: "jumat, 26.06.2026",
+    time: "Waktu menyesuaikan",
+    location: "sepok pangkalan",
+    mapsLink: "https://maps.app.goo.gl/V24rrbgYzxudkk1b6",
+    label: "Tunangan",
+  },
+  akad: {
     date: "senin, 06.07.2026",
     time: "08.00 WIB",
     location: "sepok pangkalan",
@@ -27,13 +34,13 @@ const DATA = {
     date: "senin, 06.07.2026",
     time: "14.00 WIB",
     location: "sepok pangkalan",
-    mapsLink: "https://maps.app.goo.gl/v1TWMcmSqEy7KQx57",
+    mapsLink: "https://maps.app.goo.gl/V24rrbgYzxudkk1b6",
   },
   virtualGift: [
     {
-      bankName: "Bank ...",
-      accountNumber: "...",
-      accountName: "...",
+      bankName: "-",
+      accountNumber: "-",
+      accountName: "-",
     }
   ],
   gallery: [
@@ -44,19 +51,19 @@ const DATA = {
   ],
   story: [
     {
-      year: "Feb 2020",
+      year: "2024",
       title: "Pertemuan Pertama",
-      description: "Pertama kali bertemu di acara perayaan Tahun Baru Imlek, kami langsung merasa ada kecocokan."
+      description: "Pertemuan yang tak disengaja membawa kami pada perkenalan pertama yang penuh kesan. Sebuah obrolan hangat yang menjadi awal kisah kami."
     },
     {
-      year: "Okt 2022",
-      title: "Resmi Bersama",
-      description: "Setelah mengenal lebih dalam, kami memutuskan untuk memulai sebuah perjalanan cinta bersama."
+      year: "2025",
+      title: "Komitmen",
+      description: "Seiring berjalannya waktu, rasa cinta semakin bertumbuh. Kami menyadari bahwa kami saling melengkapi dan memutuskan untuk menjalin hubungan yang lebih serius."
     },
     {
-      year: "Des 2025",
-      title: "Lamaran",
-      description: "Di bawah cahaya lentera merah yang indah, Jian mengutarakan niat hatinya untuk meminang Wei."
+      year: "26 Juni 2026",
+      title: "Lamaran & Pertunangan",
+      description: "Di hadapan keluarga besar, kami resmi melangsungkan pertunangan, mengikat janji untuk melangkah bersama menuju jenjang pernikahan."
     }
   ]
 };
@@ -142,6 +149,54 @@ const FloatingSkyLanterns = () => {
           </div>
         </div>
       ))}
+    </div>
+  );
+};
+
+const Countdown = ({ targetDate = "2026-07-06T08:00:00" }) => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const difference = +new Date(targetDate) - +new Date();
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return (
+    <div className="flex justify-center gap-1 xl:gap-2 mt-4 text-[#E5C270]">
+      <div className="flex flex-col items-center">
+        <div className="text-2xl xl:text-3xl font-serif font-black gold-gradient-text w-10 xl:w-12 text-center">{timeLeft.days}</div>
+        <div className="text-[9px] xl:text-[10px] uppercase tracking-widest opacity-80">Hari</div>
+      </div>
+      <div className="text-2xl xl:text-3xl font-serif gold-gradient-text opacity-50 px-1">:</div>
+      <div className="flex flex-col items-center">
+        <div className="text-2xl xl:text-3xl font-serif font-black gold-gradient-text w-10 xl:w-12 text-center">{timeLeft.hours}</div>
+        <div className="text-[9px] xl:text-[10px] uppercase tracking-widest opacity-80">Jam</div>
+      </div>
+      <div className="text-2xl xl:text-3xl font-serif gold-gradient-text opacity-50 px-1">:</div>
+      <div className="flex flex-col items-center">
+        <div className="text-2xl xl:text-3xl font-serif font-black gold-gradient-text w-10 xl:w-12 text-center">{timeLeft.minutes}</div>
+        <div className="text-[9px] xl:text-[10px] uppercase tracking-widest opacity-80">Menit</div>
+      </div>
+      <div className="text-2xl xl:text-3xl font-serif gold-gradient-text opacity-50 px-1">:</div>
+      <div className="flex flex-col items-center">
+        <div className="text-2xl xl:text-3xl font-serif font-black gold-gradient-text w-10 xl:w-12 text-center">{timeLeft.seconds}</div>
+        <div className="text-[9px] xl:text-[10px] uppercase tracking-widest opacity-80">Detik</div>
+      </div>
     </div>
   );
 };
@@ -329,7 +384,7 @@ export default function App() {
           </div>
 
           {/* Bento Grid Container 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-6 gap-4 w-full max-w-5xl xl:max-w-6xl md:h-[600px] xl:h-[700px] mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[repeat(9,minmax(0,1fr))] gap-4 w-full max-w-5xl xl:max-w-6xl md:h-[900px] xl:h-[1000px] mb-4">
             
             {/* Groom Section */}
             <motion.div 
@@ -376,12 +431,41 @@ export default function App() {
               <div className="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-[#5C0000] opacity-10 m-4 rounded-tr-3xl"></div>
               <div className="absolute bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-[#5C0000] opacity-10 m-4 rounded-bl-3xl"></div>
               
-              <p className="text-sm xl:text-base font-bold uppercase tracking-widest mb-2 relative z-10">Save The Date</p>
-              <div className="text-6xl xl:text-8xl font-serif font-black mb-1 drop-shadow-md relative z-10">06</div>
-              <div className="text-lg xl:text-2xl uppercase tracking-[0.2em] font-bold border-y border-[#5C0000] py-2 mb-2 w-full max-w-[80%] mx-auto relative z-10">
+              <p className="text-sm xl:text-base font-bold uppercase tracking-widest mb-1 relative z-10">Save The Date</p>
+              <div className="text-6xl xl:text-7xl font-serif font-black mb-1 drop-shadow-md relative z-10">06</div>
+              <div className="text-lg xl:text-xl uppercase tracking-[0.2em] font-bold border-y border-[#5C0000] py-1 mb-1 w-full max-w-[80%] mx-auto relative z-10">
                 Juli 2026
               </div>
-              <p className="text-lg xl:text-xl mt-2 font-script relative z-10">{DATA.groom.nickname} & {DATA.bride.nickname}</p>
+              <p className="text-sm xl:text-base mt-2 font-script relative z-10 font-bold">{DATA.groom.nickname} & {DATA.bride.nickname}</p>
+              
+              <div className="relative z-10 bg-[#5C0000]/90 rounded-2xl px-4 py-3 mt-4 border border-[#B8860B]/30 shadow-lg backdrop-blur-sm w-full mx-auto">
+                <p className="text-[10px] xl:text-xs text-[#E5C270] tracking-widest uppercase mb-1">Menuju Hari Bahagia</p>
+                <Countdown targetDate="2026-07-06T08:00:00" />
+              </div>
+            </motion.div>
+
+            {/* Event 0: Tunangan */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="md:col-span-4 md:row-span-3 lux-card rounded-2xl p-5 xl:p-6 flex flex-col relative overflow-hidden order-4 md:order-none"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E5C270] to-transparent opacity-50"></div>
+              <div className="flex items-center gap-2 mb-3 xl:mb-4">
+                <span className="text-lg xl:text-xl">💍</span>
+                <h3 className="text-xs xl:text-sm font-bold tracking-widest uppercase text-[#E5C270]">{DATA.tunangan.label}</h3>
+              </div>
+              <p className="text-xl xl:text-2xl font-serif text-white mb-2">{DATA.tunangan.date}</p>
+              <p className="text-[11px] xl:text-xs leading-relaxed opacity-90 text-[#E5C270] mb-4">{DATA.tunangan.location}</p>
+              <div className="mt-auto pt-4 border-t border-[#B8860B]/20">
+                {DATA.tunangan.mapsLink && (
+                  <a href={DATA.tunangan.mapsLink} target="_blank" rel="noreferrer" className="inline-block text-[10px] xl:text-xs gold-gradient-bg text-[#5C0000] px-3 xl:px-4 py-1.5 xl:py-2 rounded-full font-bold uppercase hover:opacity-90 transition-opacity">
+                    Google Maps
+                  </a>
+                )}
+              </div>
             </motion.div>
 
             {/* Event 1: Akad */}
@@ -390,7 +474,7 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="md:col-span-3 md:row-span-3 lux-card rounded-2xl p-5 xl:p-6 flex flex-col relative overflow-hidden order-4 md:order-none"
+              className="md:col-span-4 md:row-span-3 lux-card rounded-2xl p-5 xl:p-6 flex flex-col relative overflow-hidden order-5 md:order-none"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E5C270] to-transparent opacity-50"></div>
               <div className="flex items-center gap-2 mb-3 xl:mb-4">
@@ -414,7 +498,7 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="md:col-span-3 md:row-span-3 lux-card rounded-2xl p-5 xl:p-6 flex flex-col relative overflow-hidden order-5 md:order-none"
+              className="md:col-span-4 md:row-span-3 lux-card rounded-2xl p-5 xl:p-6 flex flex-col relative overflow-hidden order-6 md:order-none"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E5C270] to-transparent opacity-50"></div>
               <div className="flex items-center gap-2 mb-3 xl:mb-4">
@@ -438,7 +522,7 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="md:col-span-6 md:row-span-3 lux-card rounded-2xl p-6 xl:p-8 flex flex-col justify-center order-6 md:order-none relative"
+              className="md:col-span-8 md:col-start-3 md:row-span-3 lux-card rounded-2xl p-6 xl:p-8 flex flex-col justify-center order-7 md:order-none relative"
             >
               <h3 className="text-xs xl:text-sm font-bold tracking-[0.2em] uppercase text-[#E5C270] mb-3 xl:mb-4 flex items-center gap-2">
                 <Gift size={16} /> Digital Wedding Gift
