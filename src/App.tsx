@@ -48,23 +48,6 @@ const DATA = {
     "https://images.unsplash.com/photo-1543881523-cb8452ef24b8?q=80&w=600&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=600&auto=format&fit=crop"
-  ],
-  story: [
-    {
-      year: "2024",
-      title: "Pertemuan Pertama",
-      description: "Pertemuan yang tak disengaja membawa kami pada perkenalan pertama yang penuh kesan. Sebuah obrolan hangat yang menjadi awal kisah kami."
-    },
-    {
-      year: "2025",
-      title: "Komitmen",
-      description: "Seiring berjalannya waktu, rasa cinta semakin bertumbuh. Kami menyadari bahwa kami saling melengkapi dan memutuskan untuk menjalin hubungan yang lebih serius."
-    },
-    {
-      year: "26 Juni 2026",
-      title: "Lamaran & Pertunangan",
-      description: "Di hadapan keluarga besar, kami resmi melangsungkan pertunangan, mengikat janji untuk melangkah bersama menuju jenjang pernikahan."
-    }
   ]
 };
 
@@ -561,42 +544,16 @@ export default function App() {
 
           </div>
 
-          {/* Bento Grid Container 2 (Story & Gallery) */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 w-full max-w-5xl xl:max-w-6xl md:h-[400px] xl:h-[450px]">
+          {/* Bento Grid Container 2 (Gallery) */}
+          <div className="w-full max-w-5xl xl:max-w-6xl md:h-[400px] xl:h-[450px]">
             
-            {/* Love Story Section */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="md:col-span-5 lux-card rounded-2xl p-6 flex flex-col relative overflow-hidden shadow-lg order-7 md:order-none"
-            >
-              <div className="flex items-center gap-2 mb-6">
-                <BookHeart className="text-[#E5C270]" size={20} />
-                <h3 className="text-xs xl:text-sm font-bold tracking-[0.2em] uppercase text-[#E5C270]">Kisah Cinta</h3>
-              </div>
-              
-              <div className="relative pl-6 border-l border-[#B8860B]/30 space-y-6 flex-1 overflow-y-auto pr-2
-                  [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-[#5C0000] [&::-webkit-scrollbar-thumb]:bg-[#B8860B] [&::-webkit-scrollbar-thumb]:rounded-full"
-              >
-                {DATA.story.map((item, i) => (
-                  <div key={i} className="relative">
-                    <div className="absolute -left-[29px] top-1.5 w-3 h-3 bg-[#E5C270] rounded-full shadow-[0_0_10px_rgba(241,196,15,0.8)]"></div>
-                    <div className="text-sm font-mono text-[#E5C270] mb-1">{item.year}</div>
-                    <h4 className="font-serif text-white text-lg xl:text-xl mb-1">{item.title}</h4>
-                    <p className="text-[11px] xl:text-xs text-[#E5C270]/80 leading-relaxed italic">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Gallery Section */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="md:col-span-7 lux-card rounded-2xl p-6 flex flex-col justify-center shadow-xl order-8 md:order-none overflow-hidden"
+              className="w-full h-full lux-card rounded-2xl p-6 flex flex-col justify-center shadow-xl overflow-hidden"
             >
               <div className="w-full flex items-center justify-between mb-4">
                 <h3 className="text-xs xl:text-sm font-bold tracking-[0.2em] uppercase text-[#E5C270] flex items-center gap-2">
@@ -604,7 +561,7 @@ export default function App() {
                 </h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-2 md:gap-3 w-full h-full min-h-[300px]">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 w-full h-full min-h-[300px]">
                 {DATA.gallery.slice(0, 4).map((url, i) => (
                   <div key={i} className="w-full h-full overflow-hidden rounded-xl border border-[#B8860B]/20 relative group bg-[#5C0000]">
                     <div className="absolute inset-0 bg-[#5C0000]/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
