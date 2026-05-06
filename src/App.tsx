@@ -574,12 +574,18 @@ export default function App() {
           </div>
 
           {/* Footer Details */}
-          <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-8 items-center opacity-60 text-[9px] xl:text-[10px] tracking-[0.2em] uppercase text-center pb-8 border-t border-[#B8860B]/20 pt-6 w-full max-w-5xl xl:max-w-6xl">
-            <span>#{DATA.groom.nickname}{DATA.bride.nickname}WEDDING</span>
-            <div className="hidden md:block w-1 h-1 bg-[#E5C270] rounded-full"></div>
-            <span>Strict Health Protocols Applied</span>
-            <div className="hidden md:block w-1 h-1 bg-[#E5C270] rounded-full"></div>
-            <span>RSVP via WhatsApp</span>
+          <div className="mt-8 flex flex-col items-center gap-4 border-t border-[#B8860B]/20 pt-6 pb-8 w-full max-w-5xl xl:max-w-6xl">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8 items-center opacity-60 text-[9px] xl:text-[10px] tracking-[0.2em] uppercase text-center">
+              <span>#{DATA.groom.nickname}{DATA.bride.nickname}WEDDING</span>
+              <div className="hidden md:block w-1 h-1 bg-[#E5C270] rounded-full"></div>
+              <span>Strict Health Protocols Applied</span>
+              <div className="hidden md:block w-1 h-1 bg-[#E5C270] rounded-full"></div>
+              <span>RSVP via WhatsApp</span>
+            </div>
+            
+            <div className="pt-2 text-[10px] tracking-widest text-[#E5C270] opacity-80 text-center mt-2 font-mono">
+              Dibuat oleh <a href="https://www.instagram.com/uneeddeveloper/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors underline decoration-dotted underline-offset-4">uneeddeveloper</a>
+            </div>
           </div>
 
         </div>
