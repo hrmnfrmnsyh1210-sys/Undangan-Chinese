@@ -5,40 +5,35 @@ import { MapPin, Calendar, Clock, Copy, Check, Gift, MailOpen, Music, VolumeX, B
 // Data placeholders based on user request
 const DATA = {
   bride: {
-    nickname: "Wei",
-    fullName: "Wei Lin, S.E.",
-    parents: "Putri pertama dari Bapak Chen dan Ibu Li",
+    nickname: "marisa",
+    fullName: "marisa ekawati",
+    parents: "anak kedua dr bapak stepanus abol dan ibu Maria satina",
     image: "https://images.unsplash.com/photo-1545696563-af8f6ec36502?q=80&w=600&auto=format&fit=crop"
   },
   groom: {
-    nickname: "Jian",
-    fullName: "Jian Yu, B.Eng.",
-    parents: "Putra pertama dari Bapak Wang dan Ibu Zhang",
+    nickname: "atek",
+    fullName: "suprianto,S.kom",
+    parents: "Anak kedua dr bapak lim mou tie dan ibu yo hui khiam",
     image: "https://images.unsplash.com/photo-1627063231435-08e1a7e2b67f?q=80&w=600&auto=format&fit=crop"
   },
-  akad: { // Or Tea Ceremony
-    date: "Sabtu, 18 Agustus 2026",
-    time: "09:00 - 12:00 WIB",
-    location: "Vihara Mahavira Graha Pusat, Jakarta Barat",
-    mapsLink: "https://maps.google.com",
-    label: "Pemberkatan / Tea Ceremony",
+  akad: { // Or Pemberkatan 
+    date: "senin, 06.07.2026",
+    time: "08.00 WIB",
+    location: "sepok pangkalan",
+    mapsLink: "https://maps.app.goo.gl/v1TWMcmSqEy7KQx57",
+    label: "Akad Nikah",
   },
   resepsi: {
-    date: "Sabtu, 18 Agustus 2026",
-    time: "18:30 - Selesai",
-    location: "Grand Ballroom Hotel Mulia Senayan, Jakarta Pusat",
-    mapsLink: "https://maps.google.com",
+    date: "senin, 06.07.2026",
+    time: "14.00 WIB",
+    location: "sepok pangkalan",
+    mapsLink: "https://maps.app.goo.gl/v1TWMcmSqEy7KQx57",
   },
   virtualGift: [
     {
-      bankName: "BCA",
-      accountNumber: "1234567890",
-      accountName: "JIAN YU",
-    },
-    {
-      bankName: "MANDIRI",
-      accountNumber: "0987654321",
-      accountName: "WEI LIN",
+      bankName: "Bank ...",
+      accountNumber: "...",
+      accountName: "...",
     }
   ],
   gallery: [
@@ -382,9 +377,9 @@ export default function App() {
               <div className="absolute bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-[#5C0000] opacity-10 m-4 rounded-bl-3xl"></div>
               
               <p className="text-sm xl:text-base font-bold uppercase tracking-widest mb-2 relative z-10">Save The Date</p>
-              <div className="text-6xl xl:text-8xl font-serif font-black mb-1 drop-shadow-md relative z-10">18</div>
+              <div className="text-6xl xl:text-8xl font-serif font-black mb-1 drop-shadow-md relative z-10">06</div>
               <div className="text-lg xl:text-2xl uppercase tracking-[0.2em] font-bold border-y border-[#5C0000] py-2 mb-2 w-full max-w-[80%] mx-auto relative z-10">
-                Agustus 2026
+                Juli 2026
               </div>
               <p className="text-lg xl:text-xl mt-2 font-script relative z-10">{DATA.groom.nickname} & {DATA.bride.nickname}</p>
             </motion.div>
@@ -405,9 +400,11 @@ export default function App() {
               <p className="text-xl xl:text-2xl font-serif text-white mb-2">{DATA.akad.time}</p>
               <p className="text-[11px] xl:text-xs leading-relaxed opacity-90 text-[#E5C270] mb-4">{DATA.akad.location}</p>
               <div className="mt-auto pt-4 border-t border-[#B8860B]/20">
-                <a href={DATA.akad.mapsLink} target="_blank" rel="noreferrer" className="inline-block text-[10px] xl:text-xs gold-gradient-bg text-[#5C0000] px-3 xl:px-4 py-1.5 xl:py-2 rounded-full font-bold uppercase hover:opacity-90 transition-opacity">
-                  Google Maps
-                </a>
+                {DATA.akad.mapsLink && (
+                  <a href={DATA.akad.mapsLink} target="_blank" rel="noreferrer" className="inline-block text-[10px] xl:text-xs gold-gradient-bg text-[#5C0000] px-3 xl:px-4 py-1.5 xl:py-2 rounded-full font-bold uppercase hover:opacity-90 transition-opacity">
+                    Google Maps
+                  </a>
+                )}
               </div>
             </motion.div>
 
@@ -427,9 +424,11 @@ export default function App() {
               <p className="text-xl xl:text-2xl font-serif text-white mb-2">{DATA.resepsi.time}</p>
               <p className="text-[11px] xl:text-xs leading-relaxed opacity-90 text-[#E5C270] mb-4">{DATA.resepsi.location}</p>
               <div className="mt-auto pt-4 border-t border-[#B8860B]/20">
-                <a href={DATA.resepsi.mapsLink} target="_blank" rel="noreferrer" className="inline-block text-[10px] xl:text-xs gold-gradient-bg text-[#5C0000] px-3 xl:px-4 py-1.5 xl:py-2 rounded-full font-bold uppercase hover:opacity-90 transition-opacity">
-                  Google Maps
-                </a>
+                {DATA.resepsi.mapsLink && (
+                  <a href={DATA.resepsi.mapsLink} target="_blank" rel="noreferrer" className="inline-block text-[10px] xl:text-xs gold-gradient-bg text-[#5C0000] px-3 xl:px-4 py-1.5 xl:py-2 rounded-full font-bold uppercase hover:opacity-90 transition-opacity">
+                    Google Maps
+                  </a>
+                )}
               </div>
             </motion.div>
 
