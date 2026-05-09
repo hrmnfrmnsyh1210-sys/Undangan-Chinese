@@ -19,7 +19,7 @@ const DATA = {
     image: "/1.jpeg"
   },
   tunangan: {
-    date: "Jumat, 26 Juni 2026",
+    date: "Kamis, 25 Juni 2026",
     time: "Waktu menyesuaikan",
     location: "Sepok Pangkalan",
     mapsLink: "https://maps.app.goo.gl/V24rrbgYzxudkk1b6",
