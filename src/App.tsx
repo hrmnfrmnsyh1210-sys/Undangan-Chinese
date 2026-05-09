@@ -10,13 +10,13 @@ const DATA = {
     nickname: "Marisa",
     fullName: "Marisa Ekawati",
     parents: "Anak kedua dari Bapak Stepanus Abol dan Ibu Maria Satina",
-    image: "https://images.unsplash.com/photo-1545696563-af8f6ec36502?q=80&w=600&auto=format&fit=crop"
+    image: "/2.jpeg"
   },
   groom: {
     nickname: "Atek",
     fullName: "Suprianto, S.Kom",
     parents: "Anak kedua dari Bapak Lim Mou Tie dan Ibu Yo Hui Khiam",
-    image: "https://images.unsplash.com/photo-1627063231435-08e1a7e2b67f?q=80&w=600&auto=format&fit=crop"
+    image: "/1.jpeg"
   },
   tunangan: {
     date: "Jumat, 26 Juni 2026",
@@ -46,10 +46,11 @@ const DATA = {
     }
   ],
   gallery: [
-    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1543881523-cb8452ef24b8?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=600&auto=format&fit=crop"
+    "/1.jpeg",
+    "/2.jpeg",
+    "/3.jpeg",
+    "/4.jpeg",
+    "/5.jpeg"
   ]
 };
 
@@ -597,9 +598,9 @@ export default function App() {
                 </h3>
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 w-full h-full min-h-[300px]">
-                {DATA.gallery.slice(0, 4).map((url, i) => (
-                  <div key={i} className="w-full h-full overflow-hidden rounded-xl border border-[#B8860B]/20 relative group bg-[#5C0000]">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 w-full h-full min-h-[300px]">
+                {DATA.gallery.map((url, i) => (
+                  <div key={i} className={`w-full h-full overflow-hidden rounded-xl border border-[#B8860B]/20 relative group bg-[#5C0000] ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}>
                     <div className="absolute inset-0 bg-[#5C0000]/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
                     <img src={url} alt={`Gallery ${i}`} referrerPolicy="no-referrer" className="w-full h-full object-cover grayscale-[20%] sepia-[10%] group-hover:grayscale-0 transition-transform duration-700 group-hover:scale-110" />
                   </div>
