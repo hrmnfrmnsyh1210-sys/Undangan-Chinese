@@ -40,9 +40,9 @@ const DATA = {
   },
   virtualGift: [
     {
-      bankName: "-",
-      accountNumber: "-",
-      accountName: "-",
+      bankName: "Bank BCA",
+      accountNumber: "7155015497",
+      accountName: "DARBY LAY",
     }
   ],
   gallery: [
